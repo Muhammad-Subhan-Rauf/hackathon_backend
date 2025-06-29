@@ -16,7 +16,7 @@ app = Flask(__name__)
 app.config.from_object(Config)
 
 # --- Enable CORS ---
-CORS(app, origins=["http://localhost:5173"], supports_credentials=True)
+CORS(app, origins=["http://localhost:5173", "https://fccpool.netlify.app"], supports_credentials=True)
 
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
