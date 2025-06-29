@@ -5,7 +5,7 @@ from models import db, TokenBlocklist
 from flask_jwt_extended import JWTManager, get_jwt
 from flask_migrate import Migrate
 from extensions import limiter
-
+import os
 # Import Blueprints
 from routes.users_routes import users_bp
 from routes.rides_routes import rides_bp
@@ -17,6 +17,12 @@ app.config.from_object(Config)
 
 # --- Enable CORS ---
 CORS(app, origins=["http://localhost:5173"], supports_credentials=True)
+
+
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+ssl_cert_path = os.path.join(BASE_DIR, "fullchain.pem")
+ssl_key_path = os.path.join(BASE_DIR, "privkey.pem")
+
 
 # --- Extensions Initialization ---
 db.init_app(app)
@@ -66,4 +72,9 @@ def test_endpoint():
 
 # --- Run the App ---
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(
+        host='0.0.0.0',
+        port=5000,
+        debug=False,
+        ssl_context=(ssl_cert_path, ssl_key_path)
+    )
