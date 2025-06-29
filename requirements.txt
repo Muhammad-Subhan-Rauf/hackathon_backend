@@ -1,0 +1,7 @@
+Flask
+Flask-SQLAlchemy
+Flask-Migrate
+flask-jwt-extended
+werkzeug
+python-dotenv
+Flask-Limiter
