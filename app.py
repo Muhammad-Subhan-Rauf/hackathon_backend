@@ -58,6 +58,12 @@ def init_db_command():
         db.create_all()
     print("Initialized the database.")
 
+
+@app.route('/test', methods=['GET'])
+def test_endpoint():
+    return jsonify(message="Hello, World"), 200
+
+
 # --- Run the App ---
 if __name__ == '__main__':
     app.run(debug=True)
